@@ -1,68 +1,217 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Saran Enterprises</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SARAN ENTERPRISES - Premium Shopping</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body{font-family:Inter,sans-serif}.page{display:none}.page.active{display:block}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:6px}
+</style>
 </head>
+<body class="bg-slate-50 text-slate-800 min-h-screen">
 
-<body>
-
-<header>
-  <div class="logo">SARAN ENTERPRISES</div>
-
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="shop.html">Shop</a>
-    <a href="cart.html">Cart 🛒</a>
-  </nav>
+<header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b shadow-sm">
+ <div class="max-w-7xl mx-auto px-4">
+  <div class="h-16 flex items-center justify-between">
+   <button onclick="go('home')" class="flex items-center gap-2">
+    <span class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-600 to-indigo-600 text-white flex items-center justify-center font-extrabold">SE</span>
+    <span class="font-extrabold text-lg sm:text-xl text-slate-900">SARAN <span class="text-sky-600">ENTERPRISES</span></span>
+   </button>
+   <nav class="hidden md:flex gap-7 text-sm font-semibold">
+    <button onclick="go('home')" class="hover:text-sky-600">Home</button>
+    <button onclick="go('shop')" class="hover:text-sky-600">Shop</button>
+    <button onclick="go('about')" class="hover:text-sky-600">About</button>
+    <button onclick="go('contact')" class="hover:text-sky-600">Contact</button>
+   </nav>
+   <div class="flex items-center gap-2">
+    <a target="_blank" href="https://wa.me/918290840518?text=Hello%20Saran%20Enterprises%2C%20I%20have%20a%20product%20inquiry" class="hidden sm:flex bg-emerald-600 text-white px-3 py-2 rounded-xl text-xs font-bold"><i class="fa-brands fa-whatsapp mr-1"></i> Inquiry</a>
+    <button onclick="openCart()" class="relative p-3 rounded-full bg-slate-100 hover:bg-sky-50">
+      <i class="fa-solid fa-cart-shopping"></i><span id="badge" class="absolute -top-1 -right-1 bg-sky-600 text-white text-[11px] w-5 h-5 rounded-full hidden items-center justify-center">0</span>
+    </button>
+    <button onclick="document.getElementById('mobile').classList.toggle('hidden')" class="md:hidden p-2"><i class="fa-solid fa-bars text-xl"></i></button>
+   </div>
+  </div>
+  <div id="mobile" class="hidden md:hidden border-t py-3 space-y-1">
+   <button onclick="go('home');mobileClose()" class="block w-full text-left p-2">Home</button>
+   <button onclick="go('shop');mobileClose()" class="block w-full text-left p-2">Shop</button>
+   <button onclick="go('about');mobileClose()" class="block w-full text-left p-2">About</button>
+   <button onclick="go('contact');mobileClose()" class="block w-full text-left p-2">Contact</button>
+  </div>
+ </div>
 </header>
 
-<section class="hero">
-  <div>
-    <p>WHOLESALE • RETAIL • ONLINE</p>
-    <h1>Kitchen & Household Products</h1>
-    <p>
-      Quality household and kitchen products from Saran Enterprises.
-    </p>
+<div id="toast" class="fixed right-4 bottom-4 z-[100]"></div>
 
-    <a class="btn" href="shop.html">Shop Now</a>
+<main>
+<section id="home" class="page active">
+ <div class="bg-gradient-to-r from-slate-950 via-sky-950 to-slate-950 text-white">
+  <div class="max-w-7xl mx-auto px-4 py-16 lg:py-24 grid md:grid-cols-2 gap-10 items-center">
+   <div>
+    <span class="text-xs bg-sky-500/20 text-sky-300 border border-sky-500/30 rounded-full px-3 py-1">OFFICIAL STORE 2026</span>
+    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mt-5">Quality Products for Your <span class="text-sky-400">Modern Lifestyle</span></h1>
+    <p class="text-slate-300 mt-5 leading-relaxed">Premium electronics, accessories and home essentials from Saran Enterprises.</p>
+    <div class="flex flex-wrap gap-3 mt-7">
+     <button onclick="go('shop')" class="bg-sky-600 hover:bg-sky-500 px-7 py-3 rounded-xl font-bold">Explore Shop <i class="fa-solid fa-arrow-right ml-2"></i></button>
+     <a href="tel:+918290840518" class="border border-slate-700 px-7 py-3 rounded-xl font-bold"><i class="fa-solid fa-phone mr-2 text-sky-400"></i>8290840518</a>
+    </div>
+   </div>
+   <img class="rounded-2xl shadow-2xl w-full max-w-md mx-auto aspect-square object-cover" src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=80" alt="Featured product">
   </div>
+ </div>
+ <div class="bg-white border-b">
+  <div class="max-w-7xl mx-auto px-4 py-10 grid grid-cols-2 md:grid-cols-4 gap-4">
+   <div class="p-4 rounded-xl bg-slate-50"><i class="fa-solid fa-truck-fast text-sky-600 text-xl"></i><b class="block mt-2 text-sm">Fast Delivery</b><small>Nationwide dispatch</small></div>
+   <div class="p-4 rounded-xl bg-slate-50"><i class="fa-solid fa-shield-halved text-emerald-600 text-xl"></i><b class="block mt-2 text-sm">Quality Assured</b><small>Trusted products</small></div>
+   <div class="p-4 rounded-xl bg-slate-50"><i class="fa-brands fa-whatsapp text-emerald-600 text-xl"></i><b class="block mt-2 text-sm">WhatsApp Support</b><small>8290840518</small></div>
+   <div class="p-4 rounded-xl bg-slate-50"><i class="fa-solid fa-lock text-amber-600 text-xl"></i><b class="block mt-2 text-sm">Easy Ordering</b><small>COD / Online</small></div>
+  </div>
+ </div>
+ <div class="max-w-7xl mx-auto px-4 py-14">
+  <div class="flex justify-between items-end mb-7"><div><h2 class="text-3xl font-extrabold">Featured Products</h2><p class="text-slate-500 mt-1">Popular products from our catalog.</p></div><button onclick="go('shop')" class="text-sky-600 font-bold">View All →</button></div>
+  <div id="featured" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+ </div>
 </section>
 
-<section class="section">
-  <h2>Featured Products</h2>
-  <div id="products" class="product-grid"></div>
+<section id="shop" class="page max-w-7xl mx-auto px-4 py-10">
+ <h1 class="text-3xl font-extrabold">Shop Our Catalog</h1><p class="text-slate-500 mt-1">Search and add products to your cart.</p>
+ <div class="flex flex-col md:flex-row gap-3 justify-between mt-7 mb-7">
+  <input id="search" oninput="renderShop()" placeholder="🔎 Search products..." class="w-full md:w-96 px-4 py-3 rounded-xl border bg-white outline-none focus:ring-2 focus:ring-sky-500">
+  <div class="flex flex-wrap gap-2">
+   <button onclick="setCat('all')" class="cat bg-sky-600 text-white px-4 py-2 rounded-xl text-sm">All</button>
+   <button onclick="setCat('electronics')" class="cat bg-white border px-4 py-2 rounded-xl text-sm">Electronics</button>
+   <button onclick="setCat('wearables')" class="cat bg-white border px-4 py-2 rounded-xl text-sm">Wearables</button>
+   <button onclick="setCat('accessories')" class="cat bg-white border px-4 py-2 rounded-xl text-sm">Accessories</button>
+  </div>
+ </div>
+ <div id="shopGrid" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
 </section>
 
-<section class="contact">
-  <h2>Wholesale Enquiry</h2>
-  <p>Bulk order ke liye directly contact karein.</p>
-
-  <a
-    class="btn"
-    href="mailto:jramswaroop122@gmail.com?subject=Wholesale%20Enquiry"
-  >
-    Email Us
-  </a>
-
-  <a
-    class="btn whatsapp"
-    href="https://wa.me/YOUR_WHATSAPP_NUMBER"
-    target="_blank"
-  >
-    WhatsApp
-  </a>
+<section id="about" class="page max-w-4xl mx-auto px-4 py-16">
+ <div class="bg-white p-8 sm:p-12 rounded-2xl border shadow-sm">
+  <h1 class="text-3xl font-extrabold">About Saran Enterprises</h1>
+  <p class="text-slate-600 mt-5 leading-relaxed">Welcome to Saran Enterprises, your destination for quality household, lifestyle and electronic products. We aim to provide reliable products and convenient ordering through our website and WhatsApp.</p>
+  <div class="grid sm:grid-cols-2 gap-4 mt-8">
+   <div class="bg-slate-50 p-5 rounded-xl"><b><i class="fa-solid fa-phone text-sky-600 mr-2"></i>Phone</b><p class="mt-2">+91 8290840518</p></div>
+   <div class="bg-slate-50 p-5 rounded-xl"><b><i class="fa-solid fa-envelope text-sky-600 mr-2"></i>Email</b><p class="mt-2">jramswaroop122@gmail.com</p></div>
+  </div>
+ </div>
 </section>
 
-<footer>
-  <p>© 2026 Saran Enterprises</p>
-  <p>jramswaroop122@gmail.com</p>
+<section id="contact" class="page max-w-4xl mx-auto px-4 py-16">
+ <div class="bg-white p-8 rounded-2xl border shadow-sm">
+  <h1 class="text-3xl font-extrabold">Contact Us</h1>
+  <p class="text-slate-500 mt-2">Send an inquiry directly by WhatsApp or email.</p>
+  <form onsubmit="contactSubmit(event)" class="mt-7 space-y-4">
+   <input id="cn" required placeholder="Your name" class="w-full px-4 py-3 border rounded-xl">
+   <input id="ce" required placeholder="Email or phone" class="w-full px-4 py-3 border rounded-xl">
+   <textarea id="cm" required rows="5" placeholder="Your message" class="w-full px-4 py-3 border rounded-xl"></textarea>
+   <button class="w-full bg-sky-600 text-white py-3 rounded-xl font-bold">Send Inquiry</button>
+  </form>
+ </div>
+</section>
+
+<section id="confirmation" class="page max-w-2xl mx-auto px-4 py-16">
+ <div class="bg-white rounded-2xl border shadow-sm p-8 text-center">
+  <div class="w-20 h-20 mx-auto rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-4xl"><i class="fa-solid fa-check"></i></div>
+  <h1 class="text-3xl font-extrabold mt-5">Order Confirmed!</h1>
+  <p class="text-slate-500 mt-2">Thank you for ordering from Saran Enterprises.</p>
+  <div id="confirmationBox" class="text-left bg-slate-50 rounded-xl p-5 mt-6"></div>
+  <div class="flex flex-col sm:flex-row gap-3 mt-6">
+   <a id="confirmWhatsapp" target="_blank" class="flex-1 bg-emerald-600 text-white py-3 rounded-xl font-bold text-center"><i class="fa-brands fa-whatsapp mr-2"></i>WhatsApp Order</a>
+   <button onclick="go('shop')" class="flex-1 bg-sky-600 text-white py-3 rounded-xl font-bold">Continue Shopping</button>
+  </div>
+ </div>
+</section>
+</main>
+
+<!-- CART -->
+<div id="overlay" onclick="closeCart()" class="hidden fixed inset-0 bg-slate-900/50 z-50"></div>
+<aside id="drawer" class="fixed z-[60] right-0 top-0 h-full w-full sm:w-[420px] bg-white shadow-2xl translate-x-full transition-transform flex flex-col">
+ <div class="p-5 border-b flex justify-between items-center"><h2 class="font-extrabold text-xl"><i class="fa-solid fa-bag-shopping text-sky-600 mr-2"></i>Your Cart</h2><button onclick="closeCart()" class="p-2"><i class="fa-solid fa-xmark text-xl"></i></button></div>
+ <div id="cartItems" class="flex-1 overflow-y-auto p-5"></div>
+ <div class="border-t bg-slate-50 p-5">
+  <div class="flex justify-between text-sm"><span>Subtotal</span><b id="subtotal">₹0</b></div>
+  <div class="flex justify-between text-sm mt-2"><span>Shipping</span><b class="text-emerald-600">FREE</b></div>
+  <div class="border-t mt-3 pt-3 flex justify-between text-lg font-extrabold"><span>Total</span><span id="total" class="text-sky-600">₹0</span></div>
+  <button onclick="checkout()" class="w-full mt-4 bg-sky-600 hover:bg-sky-700 text-white py-3 rounded-xl font-bold">Proceed to Checkout →</button>
+ </div>
+</aside>
+
+<!-- CHECKOUT -->
+<div id="checkoutModal" class="hidden fixed inset-0 z-[80] bg-slate-900/60 p-4 items-center justify-center">
+ <div class="bg-white rounded-2xl w-full max-w-lg max-h-[92vh] overflow-y-auto p-6">
+  <div class="flex justify-between"><div><h2 class="text-2xl font-extrabold">Delivery & Checkout</h2><p class="text-xs text-slate-500 mt-1">Fill delivery details. Your order will open in WhatsApp for confirmation.</p></div><button onclick="closeCheckout()"><i class="fa-solid fa-xmark text-xl"></i></button></div>
+  <form onsubmit="placeOrder(event)" class="space-y-4 mt-6">
+   <input id="name" required placeholder="Full Name *" class="w-full px-4 py-3 border rounded-xl">
+   <div class="grid sm:grid-cols-2 gap-3"><input id="phone" required pattern="[0-9]{10}" placeholder="10-digit Phone *" class="px-4 py-3 border rounded-xl"><input id="email" type="email" placeholder="Email (optional)" class="px-4 py-3 border rounded-xl"></div>
+   <textarea id="address" required rows="3" placeholder="Complete Delivery Address *" class="w-full px-4 py-3 border rounded-xl"></textarea>
+   <div class="grid sm:grid-cols-2 gap-3"><input id="city" required placeholder="City *" class="px-4 py-3 border rounded-xl"><input id="pin" required pattern="[0-9]{6}" placeholder="Pincode *" class="px-4 py-3 border rounded-xl"></div>
+   <select id="payment" class="w-full px-4 py-3 border rounded-xl"><option>Cash on Delivery</option><option>Online Payment - Contact seller</option></select>
+   <div class="bg-sky-50 rounded-xl p-4 flex justify-between"><span class="font-semibold">Order Total</span><b id="checkoutTotal" class="text-sky-600"></b></div>
+   <button class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 rounded-xl font-extrabold"><i class="fa-brands fa-whatsapp mr-2"></i>Confirm & Send Order on WhatsApp</button>
+  </form>
+ </div>
+</div>
+
+<footer class="bg-slate-950 text-slate-400 mt-12">
+ <div class="max-w-7xl mx-auto px-4 py-10 grid md:grid-cols-3 gap-8">
+  <div><b class="text-white text-lg">SARAN ENTERPRISES</b><p class="text-sm mt-2">Quality products and convenient online ordering.</p></div>
+  <div><b class="text-white">Contact</b><p class="text-sm mt-2">+91 8290840518</p><p class="text-sm">jramswaroop122@gmail.com</p></div>
+  <div><b class="text-white">WhatsApp</b><a target="_blank" href="https://wa.me/918290840518" class="block mt-2 text-emerald-400">Chat with us →</a></div>
+ </div>
+ <div class="border-t border-slate-800 text-center text-xs py-5">© 2026 Saran Enterprises. All rights reserved.</div>
 </footer>
 
-<script src="products.js"></script>
-<script src="main.js"></script>
+<script>
+const products=[
+{id:1,name:"Wireless Noise-Canceling Headphones",price:2999,category:"electronics",rating:4.8,image:"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=700&q=80",featured:true},
+{id:2,name:"Smart Fitness Watch Ultra",price:4499,category:"wearables",rating:4.7,image:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=700&q=80",featured:true},
+{id:3,name:"Minimalist Leather Backpack",price:1899,category:"accessories",rating:4.6,image:"https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=700&q=80",featured:true},
+{id:4,name:"Portable Bluetooth Speaker 20W",price:1599,category:"electronics",rating:4.9,image:"https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=700&q=80",featured:true}
+];
+let cart=JSON.parse(localStorage.getItem("saranCart")||"[]"),cat="all";
 
+function money(n){return "₹"+n.toLocaleString("en-IN")}
+function save(){localStorage.setItem("saranCart",JSON.stringify(cart))}
+function go(id){document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active");window.scrollTo({top:0,behavior:"smooth"})}
+function mobileClose(){document.getElementById("mobile").classList.add("hidden")}
+function card(p){
+return `<div class="bg-white rounded-2xl border overflow-hidden shadow-sm hover:shadow-lg transition flex flex-col">
+<div class="aspect-square bg-slate-100 overflow-hidden"><img src="${p.image}" class="w-full h-full object-cover hover:scale-105 transition" alt="${p.name}"></div>
+<div class="p-5 flex-1 flex flex-col"><span class="text-xs uppercase font-bold text-sky-600">${p.category}</span><h3 class="font-bold mt-1">${p.name}</h3><div class="text-xs text-amber-500 mt-2">★ ${p.rating}</div>
+<div class="mt-auto pt-5 flex items-center justify-between"><b class="text-xl">${money(p.price)}</b><button onclick="add(${p.id})" class="bg-slate-900 hover:bg-sky-600 text-white px-4 py-2 rounded-xl text-sm font-bold"><i class="fa-solid fa-cart-plus mr-1"></i>Add</button></div>
+<a target="_blank" href="https://wa.me/918290840518?text=${encodeURIComponent("Hello Saran Enterprises, I want to inquire about "+p.name)}" class="mt-3 text-center text-emerald-700 bg-emerald-50 border border-emerald-200 py-2 rounded-lg text-xs font-bold">WhatsApp Inquiry</a>
+</div></div>`}
+function renderFeatured(){document.getElementById("featured").innerHTML=products.filter(x=>x.featured).map(card).join("")}
+function renderShop(){let q=(document.getElementById("search")?.value||"").toLowerCase();let arr=products.filter(p=>(cat==="all"||p.category===cat)&&p.name.toLowerCase().includes(q));document.getElementById("shopGrid").innerHTML=arr.length?arr.map(card).join(`<span></span>`):`<div class="col-span-full text-center py-16 text-slate-500">No products found.</div>`}
+function setCat(x){cat=x;document.querySelectorAll(".cat").forEach(b=>{b.classList.remove("bg-sky-600","text-white");b.classList.add("bg-white","border")});event.currentTarget.classList.add("bg-sky-600","text-white");event.currentTarget.classList.remove("bg-white");renderShop()}
+function add(id){let p=products.find(x=>x.id===id),i=cart.find(x=>x.id===id);i?i.qty++:cart.push({...p,qty:1});save();renderCart();toast("Product added to cart")}
+function change(id,d){let i=cart.find(x=>x.id===id);if(!i)return;i.qty+=d;if(i.qty<=0)cart=cart.filter(x=>x.id!==id);save();renderCart()}
+function removeItem(id){cart=cart.filter(x=>x.id!==id);save();renderCart();toast("Product removed")}
+function renderCart(){
+let count=cart.reduce((s,x)=>s+x.qty,0),sum=cart.reduce((s,x)=>s+x.price*x.qty,0);let b=document.getElementById("badge");b.textContent=count;b.classList.toggle("hidden",!count);b.classList.toggle("flex",!!count);
+document.getElementById("subtotal").textContent=money(sum);document.getElementById("total").textContent=money(sum);
+document.getElementById("cartItems").innerHTML=cart.length?cart.map(x=>`<div class="flex gap-3 border-b pb-4 mb-4"><img src="${x.image}" class="w-20 h-20 object-cover rounded-xl"><div class="flex-1"><b class="text-sm">${x.name}</b><p class="text-sky-600 font-bold mt-1">${money(x.price)}</p><div class="flex items-center gap-2 mt-2"><button onclick="change(${x.id},-1)" class="w-7 h-7 bg-slate-100 rounded">−</button><span>${x.qty}</span><button onclick="change(${x.id},1)" class="w-7 h-7 bg-slate-100 rounded">+</button><button onclick="removeItem(${x.id})" class="ml-2 text-red-500 text-xs">Remove</button></div></div></div>`).join(""):`<div class="text-center py-20 text-slate-400"><i class="fa-solid fa-cart-shopping text-4xl"></i><p class="mt-3">Your cart is empty.</p><button onclick="closeCart();go('shop')" class="mt-4 text-sky-600 font-bold">Start Shopping</button></div>`;
+}
+function openCart(){document.getElementById("overlay").classList.remove("hidden");requestAnimationFrame(()=>document.getElementById("drawer").classList.remove("translate-x-full"));renderCart()}
+function closeCart(){document.getElementById("drawer").classList.add("translate-x-full");document.getElementById("overlay").classList.add("hidden")}
+function checkout(){if(!cart.length)return toast("Cart is empty","error");closeCart();let sum=cart.reduce((s,x)=>s+x.price*x.qty,0);document.getElementById("checkoutTotal").textContent=money(sum);document.getElementById("checkoutModal").classList.remove("hidden");document.getElementById("checkoutModal").classList.add("flex")}
+function closeCheckout(){document.getElementById("checkoutModal").classList.add("hidden");document.getElementById("checkoutModal").classList.remove("flex")}
+function orderText(orderNo){
+let items=cart.map(x=>`• ${x.name} × ${x.qty} = ${money(x.price*x.qty)}`).join("\n");
+let total=cart.reduce((s,x)=>s+x.price*x.qty,0);
+return `*NEW ORDER - SARAN ENTERPRISES*\n\nOrder No: ${orderNo}\nCustomer: ${document.getElementById("name").value}\nPhone: ${document.getElementById("phone").value}\nEmail: ${document.getElementById("email").value||"Not provided"}\nAddress: ${document.getElementById("address").value}, ${document.getElementById("city").value} - ${document.getElementById("pin").value}\nPayment: ${document.getElementById("payment").value}\n\n*Items:*\n${items}\n\n*TOTAL: ${money(total)}*\n\nPlease confirm this order.`;
+}
+function placeOrder(e){e.preventDefault();let no="SE"+Date.now().toString().slice(-8),msg=orderText(no);let url="https://wa.me/918290840518?text="+encodeURIComponent(msg);let total=cart.reduce((s,x)=>s+x.price*x.qty,0);
+document.getElementById("confirmationBox").innerHTML=`<p><b>Order No:</b> ${no}</p><p class="mt-2"><b>Customer:</b> ${document.getElementById("name").value}</p><p class="mt-2"><b>Total:</b> ${money(total)}</p><p class="mt-2 text-sm text-slate-500">Your order details are ready. WhatsApp will open so the seller can confirm the order and delivery.</p>`;
+document.getElementById("confirmWhatsapp").href=url;closeCheckout();cart=[];save();renderCart();go("confirmation");window.open(url,"_blank");}
+function contactSubmit(e){e.preventDefault();let msg=`Hello Saran Enterprises, I have an inquiry.\nName: ${document.getElementById("cn").value}\nContact: ${document.getElementById("ce").value}\nMessage: ${document.getElementById("cm").value}`;window.open("https://wa.me/918290840518?text="+encodeURIComponent(msg),"_blank");toast("WhatsApp opened with your inquiry")}
+function toast(m){let x=document.createElement("div");x.className="bg-slate-900 text-white px-4 py-3 rounded-xl shadow-xl text-sm font-semibold mb-2";x.textContent=m;document.getElementById("toast").appendChild(x);setTimeout(()=>x.remove(),3000)}
+renderFeatured();renderShop();renderCart();
+</script>
 </body>
 </html>
